@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -83,6 +85,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("1");
 			}
 			
@@ -92,6 +95,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("2");
 			}
 			
@@ -101,6 +105,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("3");
 			}
 			
@@ -111,6 +116,12 @@ public class Ventana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				text.setText("");
+				bs.setEnabled(true);
+				br.setEnabled(true);
+				bd.setEnabled(true);
+				bm.setEnabled(true);
+				aux = 0;
+				
 			}
 			
 		};
@@ -119,6 +130,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("4");
 			}
 			
@@ -128,6 +140,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("5");
 			}
 			
@@ -137,6 +150,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("6");
 			}
 			
@@ -146,6 +160,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append(" + ");
 			}
 			
@@ -155,6 +170,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("7");
 			}
 			
@@ -164,6 +180,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("8");
 			}
 			
@@ -173,6 +190,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("9");
 			}
 			
@@ -182,6 +200,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append(" - ");
 			}
 			
@@ -191,6 +210,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append(".");
 			}
 			
@@ -200,6 +220,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append("0");
 			}
 			
@@ -209,6 +230,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append(" / ");
 			}
 			
@@ -218,6 +240,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() < 13)
 				text.append(" * ");
 			}
 			
@@ -239,19 +262,20 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				String texto;
+				double r = 0.0;
 				if(arg0.getKeyChar() == '\n') {
-					double r = getResult(text.getText());
+					if(aux == 1) {
+				    r = getResult(text.getText());
+					}else if(aux == 2) {
+						r = getResult2(text.getText());
+					}
 					aux = 0;
 					text.setText(r + "");
-				}else if(aux == 0) {
-				texto = text.getText().split(" ")[1];
-				if(texto == "+" || texto == "-" || texto == "*" || texto == "/") {
-					aux = 1;
-					System.out.println("Aux = 1");
-				}
-				}else{
-					text.setText("");
+					bs.setEnabled(true);
+					br.setEnabled(true);
+					bd.setEnabled(true);
+					bm.setEnabled(true);
+					aux = 0;
 				}
 				
 			}
@@ -272,6 +296,50 @@ public class Ventana extends JFrame{
 		br.addKeyListener(kl);
 		bd.addKeyListener(kl);
 		bm.addKeyListener(kl);
+		MouseListener ms = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				//System.out.println(arg0.getButton());
+				aux++;
+				if(aux == 3) {
+					bs.setEnabled(false);
+					br.setEnabled(false);
+					bd.setEnabled(false);
+					bm.setEnabled(false);
+				}
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		bs.addMouseListener(ms);
+		br.addMouseListener(ms);
+		bd.addMouseListener(ms);
+		bm.addMouseListener(ms);
 	}
 	public double getResult(String op) {
 		String n1S = op.split(" ")[0];
@@ -292,4 +360,63 @@ public class Ventana extends JFrame{
 		}
 		return r;
 	}
+	public double getResult2 (String op) {
+		String n1S = op.split(" ")[0];
+		String arS = op.split(" ")[1];
+		String n2S = op.split(" ")[2];
+		String ar2S = op.split(" ")[3];
+		String n3S = op.split(" ")[4];
+		double n1 = Double.parseDouble(n1S);
+		double n2 = Double.parseDouble(n2S);
+		double n3 = Double.parseDouble(n3S);
+		double r = 0;
+		if(arS.equals("+")) {
+			r = n1 + n2;
+			if(ar2S.equals("+")) {
+				r += n3;
+			}else if(ar2S.equals("-")) {
+				r-= n3;
+			}else if(ar2S.equals("*")) {
+				r *= n3;
+			}else if(ar2S.equals("/")) {
+				r /= n3;
+			}
+		}else if(arS.equals("-")) {
+			r = n1 - n2;
+			if(ar2S.equals("+")) {
+				r += n3;
+			}else if(ar2S.equals("-")) {
+				r-= n3;
+			}else if(ar2S.equals("*")) {
+				r *= n3;
+			}else if(ar2S.equals("/")) {
+				r /= n3;
+			}
+		}else if(arS.equals("*")) {
+			r = n1* n2;
+			if(ar2S.equals("+")) {
+				r += n3;
+			}else if(ar2S.equals("-")) {
+				r-= n3;
+			}else if(ar2S.equals("*")) {
+				r *= n3;
+			}else if(ar2S.equals("/")) {
+				r /= n3;
+			}
+			
+		}else if(arS.equals("/")) {
+			r = n1 / n2;
+			if(ar2S.equals("+")) {
+				r += n3;
+			}else if(ar2S.equals("-")) {
+				r-= n3;
+			}else if(ar2S.equals("*")) {
+				r *= n3;
+			}else if(ar2S.equals("/")) {
+				r /= n3;
+			}
+		}
+		return r;
+	}
+	
 }
