@@ -15,6 +15,7 @@ public class Ventana extends JFrame{
 	JPanel panel;
 	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bs, br, bd, bm, bb, bI, bP;
 	JTextArea text;
+	int aux = 0;
 	public Ventana() {
 		this.setSize(225, 330);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -238,9 +239,19 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void keyTyped(KeyEvent arg0) {
+				String texto;
 				if(arg0.getKeyChar() == '\n') {
 					double r = getResult(text.getText());
+					aux = 0;
 					text.setText(r + "");
+				}else if(aux == 0) {
+				texto = text.getText().split(" ")[1];
+				if(texto == "+" || texto == "-" || texto == "*" || texto == "/") {
+					aux = 1;
+					System.out.println("Aux = 1");
+				}
+				}else{
+					text.setText("");
 				}
 				
 			}
@@ -257,6 +268,10 @@ public class Ventana extends JFrame{
 		b8.addKeyListener(kl);
 		b9.addKeyListener(kl);
 		b0.addKeyListener(kl);
+		bs.addKeyListener(kl);
+		br.addKeyListener(kl);
+		bd.addKeyListener(kl);
+		bm.addKeyListener(kl);
 	}
 	public double getResult(String op) {
 		String n1S = op.split(" ")[0];
