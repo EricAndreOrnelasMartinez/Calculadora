@@ -28,7 +28,7 @@ public class Ventana extends JFrame{
 		this.add(panel);
 		text = new JTextArea();
 		text.setBounds(5, 5, 215, 40);
-		text.setFont(new Font("Aria", Font.PLAIN, 25));
+		text.setFont(new Font("Aria", Font.PLAIN, 20));
 		text.setEditable(false);
 		text.setBorder(new LineBorder(Color.BLACK, 3, false));
 		text.setVisible(true);
@@ -85,7 +85,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("1");
 			}
 			
@@ -95,7 +95,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("2");
 			}
 			
@@ -105,7 +105,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("3");
 			}
 			
@@ -130,7 +130,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("4");
 			}
 			
@@ -140,7 +140,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("5");
 			}
 			
@@ -150,7 +150,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("6");
 			}
 			
@@ -160,7 +160,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append(" + ");
 			}
 			
@@ -170,7 +170,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("7");
 			}
 			
@@ -180,7 +180,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("8");
 			}
 			
@@ -190,7 +190,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("9");
 			}
 			
@@ -200,7 +200,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append(" - ");
 			}
 			
@@ -210,7 +210,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append(".");
 			}
 			
@@ -220,7 +220,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append("0");
 			}
 			
@@ -230,7 +230,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append(" / ");
 			}
 			
@@ -240,7 +240,7 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(text.getText().length() < 13)
+				if(text.getText().length() < 15)
 				text.append(" * ");
 			}
 			
@@ -268,6 +268,8 @@ public class Ventana extends JFrame{
 				    r = getResult(text.getText());
 					}else if(aux == 2) {
 						r = getResult2(text.getText());
+					}else if(aux == 3) {
+						r = getResult3(text.getText());
 					}
 					aux = 0;
 					text.setText(r + "");
@@ -302,7 +304,7 @@ public class Ventana extends JFrame{
 			public void mouseClicked(MouseEvent arg0) {
 				//System.out.println(arg0.getButton());
 				aux++;
-				if(aux == 3) {
+				if(aux == 4) {
 					bs.setEnabled(false);
 					br.setEnabled(false);
 					bd.setEnabled(false);
@@ -414,6 +416,207 @@ public class Ventana extends JFrame{
 				r *= n3;
 			}else if(ar2S.equals("/")) {
 				r /= n3;
+			}
+		}
+		return r;
+	}
+	public double getResult3(String op) {
+		double r = 0.0;
+		double n1 = Double.parseDouble(op.split(" ")[0]);
+		double n2 = Double.parseDouble(op.split(" ")[2]);
+		double n3 = Double.parseDouble(op.split(" ")[4]);
+		double n4 = Double.parseDouble(op.split(" ")[6]);
+		String arS = op.split(" ")[1];
+		String ar2S = op.split(" ")[3];
+		String ar3S = op.split(" ")[5];
+		if(arS.equals("+")) {
+			r = n1 + n2;
+			if(ar2S.equals("+")) {
+				r += n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("-")) {
+				r-= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("*")) {
+				r *= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("/")) {
+				r /= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}
+		}else if(arS.equals("-")) {
+			r = n1 - n2;
+			if(ar2S.equals("+")) {
+				r += n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("-")) {
+				r-= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("*")) {
+				r *= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("/")) {
+				r /= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}
+		}else if(arS.equals("*")) {
+			r = n1* n2;
+			if(ar2S.equals("+")) {
+				r += n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("-")) {
+				r-= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("*")) {
+				r *= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("/")) {
+				r /= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}
+			
+		}else if(arS.equals("/")) {
+			r = n1 / n2;
+			if(ar2S.equals("+")) {
+				r += n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("-")) {
+				r-= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("*")) {
+				r *= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
+			}else if(ar2S.equals("/")) {
+				r /= n3;
+				if(ar3S.equals("+")) {
+					r += n4;
+				}else if(ar3S.equals("-")) {
+					r-= n4;
+				}else if(ar3S.equals("*")) {
+					r *= n4;
+				}else if(ar3S.equals("/")) {
+					r /= n4;
+				}
 			}
 		}
 		return r;
