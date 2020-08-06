@@ -25,6 +25,7 @@ public class Ventana extends JFrame{
 		this.setResizable(false);
 		panel = new JPanel();
 		panel.setLayout(null);
+		//panel.setBackground(Color.blue);
 		this.add(panel);
 		text = new JTextArea();
 		text.setBounds(5, 5, 215, 40);
@@ -383,8 +384,13 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(text.getText().length() != 0) {
 				int endIndex = text.getText().length() - 1;
 				text.setText(text.getText().substring(0, endIndex).strip());
+				aux--;
+				}else {
+					JOptionPane.showMessageDialog(null, "Ya fue eliminado");
+				}
 				
 			}
 			
