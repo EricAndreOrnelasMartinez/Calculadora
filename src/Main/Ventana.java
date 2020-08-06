@@ -15,11 +15,11 @@ import javax.swing.border.LineBorder;
 @SuppressWarnings("serial")
 public class Ventana extends JFrame{
 	JPanel panel;
-	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bs, br, bd, bm, bb, bI, bP;
+	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bs, br, bd, bm, bb, bI, bP, bb1, be, brc;
 	JTextArea text;
 	int aux = 0;
 	public Ventana() {
-		this.setSize(225, 330);
+		this.setSize(225, 380);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -81,6 +81,18 @@ public class Ventana extends JFrame{
 		bm = new JButton("*");
 		bm.setBounds(170, 220, 50, 50);
 		panel.add(bm);
+		be = new JButton("x²");
+		be.setBounds(5, 275, 50, 50);
+		panel.add(be);
+		brc = new JButton("√");
+		brc.setBounds(60, 275, 50, 50);
+		panel.add(brc);
+		bb1 = new JButton("D");
+		bb1.setBounds(115, 275, 50, 50);
+		panel.add(bb1);
+		bI = new JButton("=");
+		bI.setBounds(170, 275, 50, 50);
+		panel.add(bI);
 		ActionListener ac1 = new ActionListener() {
 
 			@Override
@@ -304,7 +316,7 @@ public class Ventana extends JFrame{
 			public void mouseClicked(MouseEvent arg0) {
 				//System.out.println(arg0.getButton());
 				aux++;
-				if(aux == 4) {
+				if(aux >= 4) {
 					bs.setEnabled(false);
 					br.setEnabled(false);
 					bd.setEnabled(false);
@@ -342,6 +354,71 @@ public class Ventana extends JFrame{
 		br.addMouseListener(ms);
 		bd.addMouseListener(ms);
 		bm.addMouseListener(ms);
+		ActionListener aci = new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				double r = 0.0;
+					if(aux == 1) {
+				    r = getResult(text.getText());
+					}else if(aux == 2) {
+						r = getResult2(text.getText());
+					}else if(aux == 3) {
+						r = getResult3(text.getText());
+					}else if(aux == 5) {
+						r = getPower(text.getText());
+					}else if(aux == 6) {
+						r = getSQRT(text.getText());
+					}
+					aux = 0;
+					text.setText(r + "");
+					bs.setEnabled(true);
+					br.setEnabled(true);
+					bd.setEnabled(true);
+					bm.setEnabled(true);
+					aux = 0;
+				}
+		};
+		bI.addActionListener(aci);
+		ActionListener acb1 = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int endIndex = text.getText().length() - 1;
+				text.setText(text.getText().substring(0, endIndex).strip());
+				
+			}
+			
+			
+		};
+		bb1.addActionListener(acb1);
+		ActionListener ace = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				text.append("²");
+				aux = 5;
+				bs.setEnabled(false);
+				br.setEnabled(false);
+				bd.setEnabled(false);
+				bm.setEnabled(false);
+			}
+			
+		};
+		be.addActionListener(ace);
+		ActionListener acsq = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				text.append("√");
+				aux = 6;
+				bs.setEnabled(false);
+				br.setEnabled(false);
+				bd.setEnabled(false);
+				bm.setEnabled(false);
+			}
+			
+		};
+		brc.addActionListener(acsq);
 	}
 	public double getResult(String op) {
 		String n1S = op.split(" ")[0];
@@ -619,6 +696,17 @@ public class Ventana extends JFrame{
 				}
 			}
 		}
+		return r;
+	}
+	public double getPower(String exp) {
+		int endIndex = exp.length() - 1;
+		double n = Double.parseDouble(exp.substring(0, endIndex));
+		double r = Math.pow(n, 2);
+		return r;
+	}
+	public double getSQRT(String sqrt) {
+		double n = Double.parseDouble(sqrt.substring(1));
+		double r = Math.sqrt(n);
 		return r;
 	}
 	
